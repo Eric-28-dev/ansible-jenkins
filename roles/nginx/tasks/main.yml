@@ -1,3 +1,12 @@
+- name: Ensure /var/www/html exists
+  file:
+    path: /var/www/html
+    state: directory
+    owner: nginx
+    group: nginx
+    mode: '0755'
+  become: yes
+
 - name: install nginx
   yum: 
     name:
@@ -16,4 +25,6 @@
   template:
     src: index.html.j2
     dest: /var/www/html/index.html
+  become: yes
+
 
